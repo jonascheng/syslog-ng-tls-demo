@@ -6,12 +6,9 @@ setup: ## setup go modules
 
 .PHONY: run-syslog-ng-tcp
 run-syslog-ng-tcp: ## runs syslog ng via tcp
-	#docker run --rm -it -p 514:514/udp -p 601:601 --name syslog-ng balabit/syslog-ng:latest -edv
 	docker run --rm -it -p 601:601 --name syslog-ng \
-                -v "`pwd`/syslog-conf:/etc/syslog-ng" \
 		-v "/tmp/log/:/var/log/" \
 		balabit/syslog-ng:latest -edv
-	#docker run --rm -it -p 601:6601/tcp --name syslog-ng lscr.io/linuxserver/syslog-ng:latest
 
 .PHONY: run-loggen-tcp
 run-loggen-tcp: ## runs syslog loggen via tcp
