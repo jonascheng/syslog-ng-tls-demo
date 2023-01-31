@@ -1,13 +1,13 @@
-$syslog = <<-SCRIPT 
+$syslog = <<-SCRIPT
 /vagrant/provision/syslog-ng.sh
 SCRIPT
 
-$go = <<-SCRIPT 
-/vagrant/provision/go.sh 
+$go = <<-SCRIPT
+/vagrant/provision/go.sh
 SCRIPT
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "boxomatic/ubuntu-20.04" 
+  config.vm.box = "boxomatic/ubuntu-20.04"
   config.vm.box_version = "20211024.0.1"
 
   config.vm.define "demo" do |node|
