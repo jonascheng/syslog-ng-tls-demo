@@ -11,7 +11,10 @@ setup-syslog-ng-key: ## generate syslog-ng server cert
 	mkdir -p syslog-ca && rm -f syslog-ca/*
 	echo "subjectAltName=DNS:${SERVER_IP},IP:${SERVER_IP}" > ./server-ext.cnf
 	SITE_NAME=${SERVER_IP} ./provision/cert-gen.sh
-	mv endentity-ca.* syslog-ca
+	cp server-ca.* syslog-ca
+	cp *.pem syslog-ca
+	cp client-ca.* syslog-client
+	cp *.pem syslog-client
 
 .PHONY: run-syslog-ng-tcp
 run-syslog-ng-tcp: ## runs syslog-ng via tcp
@@ -21,16 +24,16 @@ run-syslog-ng-tcp: ## runs syslog-ng via tcp
 		-v "/tmp/log/:/var/log/" \
 		balabit/syslog-ng:latest -edv
 
-.PHONY: run-loggen-tcp
-run-loggen-tcp: ## runs syslog loggen via tcp
+.PHONY: run-loggen-tcp-client
+run-loggen-tcp-client: ## runs syslog loggen via tcp
 	loggen -i -S -P ${SERVER_IP} 601
 
-.PHONY: run-openssl-tls
-run-openssl-tls: ## runs syslog client via tls
+.PHONY: run-openssl-tls-client
+run-openssl-tls-client: ## runs syslog client via tls
 	openssl s_client -connect ${SERVER_IP}:6514
 
-.PHONY: run-syslog-client-tcp
-run-syslog-client-tcp: ## runs syslog client via tcp
+.PHONY: run-syslog-go-client
+run-syslog-go-client: ## runs syslog Go client
 	cd syslog-client && go run main.go
 
 .PHONY: help
