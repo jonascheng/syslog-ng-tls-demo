@@ -10,11 +10,18 @@ To find a common way to get source IP no matter direct connection, via forward p
     vagrant ssh
     ```
 
-3. start syslog-ng server
+3. generate CA for both client and server
 
     ```console
     cd /vagrant
-    make run-syslog-ng-tcp
+    make setup-syslog-ng-key
+    ```
+
+4. start syslog-ng server
+
+    ```console
+    cd /vagrant
+    make run-syslog-ng
     ```
 
     received log from client would be persisted in `/tmp/log/syslog`
@@ -25,14 +32,14 @@ To find a common way to get source IP no matter direct connection, via forward p
 
     ```console
     cd /vagrant
-    make run-loggen-tcp
+    make run-loggen-tcp-client
     ```
 
-6. test syslog-ng server with golang via tcp
+6. test syslog-ng server with golang
 
     ```console
     cd /vagrant
-    make run-syslog-client-tcp
+    make run-syslog-go-client
     ```
 
 # References

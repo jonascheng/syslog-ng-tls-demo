@@ -16,8 +16,8 @@ setup-syslog-ng-key: ## generate syslog-ng server cert
 	cp client-ca.* syslog-client
 	cp *.pem syslog-client
 
-.PHONY: run-syslog-ng-tcp
-run-syslog-ng-tcp: ## runs syslog-ng via tcp
+.PHONY: run-syslog-ng
+run-syslog-ng: ## runs syslog-ng server
 	docker run --rm -it -p 601:601 -p 6514:6514 --name syslog-ng \
 		-v "`pwd`/syslog-conf/:/etc/syslog-ng/"	\
 		-v "`pwd`/syslog-ca/:/etc/syslog-ca/"	\
