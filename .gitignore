@@ -1,1 +1,6 @@
 .vagrant/**
+*.cnf
+*.key
+*.pem
+*.csr
+*.srl

@@ -35,3 +35,6 @@ To find a common way to get source IP no matter direct connection, via forward p
     make run-syslog-client-tcp
     ```
 
+# References
+
+* [如何使用 OpenSSL 簽發中介 CA](https://blog.davy.tw/posts/use-openssl-to-sign-intermediate-ca/)

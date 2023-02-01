@@ -8,8 +8,7 @@ import (
 	syslog "github.com/RackSec/srslog"
 )
 
-func main() {
-
+func run_tcp() {
 	w, err := syslog.Dial("tcp", "127.0.0.1:601", syslog.LOG_ERR, "testtag")
 	if err != nil {
 		log.Printf("w=%v, err=%v\n", w, err)
@@ -24,4 +23,8 @@ func main() {
 		log.Println(msg, " sent")
 		w.Alert(msg)
 	}
+}
+
+func main() {
+	run_tcp()
 }
