@@ -1,4 +1,4 @@
-To find a common way to get source IP no matter direct connection, via forward proxy, via MITM proxy, or NAT
+syslog-ng via TLS connections
 
 # How to test?
 
